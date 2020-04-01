@@ -1,0 +1,53 @@
+{
+  "name": "Sample-app",
+  "version": "1.0.0",
+  "description": "Sample online purchasing app.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server",
+    "bundle": "webpack -p"
+  },
+  "keywords": [],
+  "author": "Subramanian <subbuvishnu92@yahoo.com>",
+  "license": "MIT",
+  "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
+    "react": "^15.4.1",
+    "react-bootstrap": "^0.32.4",
+    "react-dom": "^15.4.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.20.0",
+    "babel-loader": "^6.2.9",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "css-loader": "^0.26.1",
+    "react-hot-loader": "^1.3.1",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2",
+    "style-loader": "^0.13.1"
+  },
+  "files": [
+    "bin/",
+    "app/",
+    "lib/",
+    "dist/",
+    "src/",
+    "scripts/",
+    "resources/",
+    "menu/",
+    "cli.js",
+    "index.js",
+    "bloggify.js",
+    "bloggify.json",
+    "bloggify/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Subramanian8/sample-assessment"
+  },
+  "bugs": {
+    "url": "https://github.com/Subramanian8/sample-assessment/issues"
+  }
+}

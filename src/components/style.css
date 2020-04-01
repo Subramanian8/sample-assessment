@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Pacifico');
+
+* {
+    box-sizing: border-box;
+}
+
+body, input, button {
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background: #1abc9c;
+}
+
+#app {
+    max-width: 100%;
+    width: 900px;
+    margin: 2em auto;
+    background: white;
+    padding: 1em;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+    color: #1abc9c;
+    text-align: center;
+}
+
+input, button {
+    padding: 0.5em;
+    margin: 2px;
+    display: inline-block;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.19);
+}
+input, button, div#app {
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+input {
+    border: 2px solid #16a085;
+}
+
+button {
+    background: #16a085;
+    color: #fff;
+    border: none;
+    padding: 0.7em;
+}
+
+button:last-of-type {
+    margin-right: 0;
+}
+
+td:first-of-type {
+    width: 100%;
+}
+
+th:last-of-type,
+td:last-of-type {
+    /*text-align: right;*/
+}
+
+th {
+    /*text-align: left;*/
+    font-weight: bold;
+    font-size: 1.3em;
+    background: #1ABC9C;
+    color: #ffff;
+}
+
+th, td {
+    padding: 10px 0;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+}
+
+p.tutorial {
+    padding: 10px;
+    color: #222;
+    background: #ecf0f1;
+    text-align: center;
+}
+
+form.create-todo-form {
+    border-bottom: 1px solid #ecf0f1;
+    padding: 1em 0;
+}
+
+form.create-todo-form input {
+    width: calc(100% - 50px);
+}
+
+
+tr.item-not-Checked td {
+    /*color: #787878;*/
+}
+
+tr.item-Checked td {
+    color: #1abc9c;
+    background: #eeeeee;
+}
+
+tr > td {
+    font-size: 1.3em;
+}
+button {
+    cursor: pointer;
+}
+
+tr > td:first-of-type {
+    width: calc(100% - 0px) !important;
+}
+
+tr > td > form > input {
+    width: 100%;
+}
+
+.delete-btn, .cancel-btn {
+    background-color: #e74c3c;
+}
+.cancel-btn:focus {
+    background-color: #DC143C;
+    transition: background-color 0.3s;
+}
+.placeorderbtn, .cancel-btn-div {
+    text-align: center;
+}
+.placeorderbtn button, .cancel-btn-div button {
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 10px 40px;
+}
+.placeorderbtn button:focus {
+    background: #3BA479;
+    transition: background-color 0.3s;
+}
+input[type='checkbox'] {
+    width: 20px;
+    height: 20px;
+}
+
+.cartPackage {
+    border: 1px solid #888888;
+    border-radius: 5px;
+    padding: 8px;
+    margin: 12px 2px;
+}
+.cartPackage>div {
+    font-weight: bold;
+    font-size: 17px;
+    margin: 0 0 10px 0;
+}
+.cartPackage ul {
+    padding: 0;
+    margin: 0;
+    color: darkblue;
+}
+.cartPackage ul li span:first-child {
+    width: 25%;
+    display: inline-block;
+}
+.cartPackage ul li span {
+    width: 75%;
+}
+.cartModalheader {
+    text-align: center;
+    font-weight: bold;
+    font-size: 19px;
+    margin: 0;
+}
+#cartModal {
+    width: 90%;
+    max-width: 500px;
+    height: 90%;
+    padding: 15px;
+    position: fixed;
+    background: #FFFFFF;
+    top: 0px;
+    bottom: 0px;
+    z-index: 200;
+    margin: auto;
+    left: 0px;
+    right: 0px;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 0px 0px #000000, 0px 0px 25px 0px #000000;
+    -webkit-box-shadow: inset 0px 0px 0px 0px #000000, 0px 0px 25px 0px #000000;
+    animation: slideDownEffect 0.5s ease 0s 1 normal none running;
+}
+#cartModal:before {
+    content: "";
+    background-color: #000000;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.72;
+    z-index: -1;
+}
+#cartModal:after{
+    content: "";
+    /*background: linear-gradient(to bottom,#E06036, #EA8E47);*/
+    background: #ffffff;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 10px;
+    z-index: -1;
+}
+
+#cartModal>div {
+    overflow-y: auto;
+    height: 86%;
+    margin-bottom: 12px;
+    border-bottom: 2px solid #000;
+}
+#cartModal div::-webkit-scrollbar-track {
+    -webkit-box-shadow: transparent;
+    background-color: #eeeeee;
+    border-radius: 15px;
+}
+#cartModal div::-webkit-scrollbar {
+    width: 4px;
+    height: 0px;
+    background-color: #eeeeee;
+    border-radius: 15px;
+}
+#cartModal div::-webkit-scrollbar-thumb {
+    border-radius: 15px;
+    background-color: darkgrey;
+}
+
+/*cart modal animations*/
+.cartModalClose {
+    animation: slideLeftEffect 0.5s ease 0s 1 normal none running !important;
+}
+@-webkit-keyframes slideDownEffect {
+    from {top: -100%;}
+    to {top: 0%;}
+}
+@keyframes slideDownEffect {
+    from {top: -100%;}
+    to {top: 0%;}
+}
+
+@-webkit-keyframes slideLeftEffect {
+    from {left: 0%;opacity: 1;}
+    to {left: -160%;opacity: 0;}
+}
+@keyframes slideLeftEffect {
+    from {left: 0%;opacity: 1;}
+    to {left: -160%;opacity: 0;}
+}

@@ -1,0 +1,18 @@
+React js:
+I already bundled the project. so just start the node server and open the "index.html" to view the page. 
+-> please make sure node js project (node_project-backend) is started.
+
+Or else you want to setup develope environment please follow the steps to run the react js project:
+
+1. Unzip the Node.zip file.
+2. Install the npm using following command,
+	-> npm install	
+3. Just start the project using following cmd,
+	-> npm run start
+4. It run on http://localhost:8081
+	
+To bundle the project,
+	-> npm run bundle
+
+	-> 'index.html' and 'public' folder are the bundled source.	
+	-> open the "index.html" to view the page.

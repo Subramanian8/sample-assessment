@@ -1,0 +1,135 @@
+import Foundation
+import UIKit
+
+struct item {
+    var id: Int!
+    var price: Int!
+    var weight: Int!
+}
+
+func getWeight(packArray: [item]) -> Int {
+    var totalWeight = 0
+    packArray.forEach({
+        totalWeight += $0.weight
+    })
+    return totalWeight
+}
+
+func getPrice(packArray: [item]) -> Int {
+    var totalPrice = 0
+    packArray.forEach({
+        totalPrice += $0.price
+    })
+    return totalPrice
+}
+
+func getOrderedPackagesWithWeightLimit(itemsArray: [item], packagesArray: [[item]]) -> [[item]] {
+    var packagesArray = packagesArray
+    for i in 0..<itemsArray.count {
+        var weightArray = [Int] ()
+        for package in packagesArray {
+            weightArray.append(getWeight(packArray: package))
+        }
+        let item = itemsArray[i]
+        var isInserted = false
+        for j in 0..<weightArray.count {
+            //Avoid duplicate insert if already inserted.
+            if !isInserted && ((j+1) < weightArray.count) {
+                //Compare maximum/previous package weight is greater than current package weight. And sum of current package total price and item price to be inserted is less than 250.
+                if ((weightArray[j] >= (item.weight+weightArray[j+1])) &&
+                    ((getPrice(packArray: packagesArray[j+1])+item.price) <= 250)) {
+                    packagesArray[j+1].append(item)
+                    isInserted = true
+                }
+            }
+        }
+    }
+    return packagesArray
+}
+
+func getOrderedPackagesWithOutWeightLimit(itemsArray: [item], packagesArray: [[item]]) -> [[item]] {
+    var packagesArray = packagesArray.sorted(by: {getWeight(packArray: $0) > getWeight(packArray: $1)})
+    for i in 0..<itemsArray.count {
+        var weightArray = [Int] ()
+        for package in packagesArray {
+            weightArray.append(getWeight(packArray: package))
+        }
+        let item = itemsArray[i]
+        var isInserted = false
+        for j in 0..<weightArray.count {
+            //Avoid duplicate insert if already inserted.
+            if !isInserted && ((j+1) < weightArray.count) {
+                //Sum of current package total price and item price to be inserted is less than 250.
+                if (((getPrice(packArray: packagesArray[j+1])+item.price) <= 250)) {
+                    packagesArray[j+1].append(item)
+                    isInserted = true
+                }
+            }
+        }
+    }
+    return packagesArray
+}
+
+func removeItemsFrom(itemsArray: [item], packagesArray: [[item]]) -> [item] {
+    var temArray = itemsArray
+    for _ in 0..<itemsArray.count {
+        for j in 0..<packagesArray.count {
+            let pack = packagesArray[j]
+            for tempItem in pack {
+                if let index = temArray.firstIndex(where: {tempItem.id == $0.id}) {
+                    temArray.remove(at: index)
+                }
+            }
+        }
+    }
+    return temArray
+}
+
+var princeList = [10, 100, 30, 20, 30, 40, 200, 120, 130, 20, 10, 4, 5, 240, 123, 245, 230, 110, 45, 67, 88, 10, 17, 19, 89, 45, 99, 125, 198, 220, 249, 230, 190, 45, 12, 5, 2, 90, 12, 167, 12, 8, 2, 9, 210, 167, 23, 190, 199, 12]
+var weightList = [200, 20, 300, 500, 250, 10, 10, 500, 790, 100, 340, 800, 200, 20, 700, 10, 20, 200, 200, 20, 300, 500, 250, 10, 10, 500, 790, 100, 340, 800, 200, 20, 700, 10, 20, 200, 200, 20, 300, 500, 250, 10, 10, 500, 790, 100, 340, 800, 200, 20]
+
+var itemsList = [item(id: 0, price: princeList[0], weight: weightList[0]),
+                 item(id: 3, price: princeList[3], weight: weightList[3]),
+                 item(id: 6, price: princeList[6], weight: weightList[6]),
+                 item(id: 8, price: princeList[8], weight: weightList[8]),
+                 item(id: 9, price: princeList[9], weight: weightList[9]),
+                 item(id: 12, price: princeList[12], weight: weightList[12]),
+                 item(id: 15, price: princeList[15], weight: weightList[15]),
+                 item(id: 7, price: princeList[7], weight: weightList[7]),
+                 item(id: 10, price: princeList[10], weight: weightList[10]),
+                 item(id: 13, price: princeList[13], weight: weightList[13]),
+                 item(id: 5, price: princeList[5], weight: weightList[5])
+    
+]
+var total = 0
+itemsList.forEach({
+total += $0.price
+})
+
+var numberOfPackages = ((total % 250) == 0) ? total/250 : (total/250)+1
+var itemsArray = itemsList.sorted(by: {$0.weight > $1.weight})
+var packagesArray = [[item]] ()
+
+for i in 0..<numberOfPackages {
+    packagesArray.append([itemsArray[i]])
+}
+
+itemsArray = itemsArray.sorted(by: {$0.weight > $1.weight})
+itemsArray = removeItemsFrom(itemsArray: itemsArray, packagesArray: packagesArray)
+
+packagesArray = getOrderedPackagesWithWeightLimit(itemsArray: itemsArray, packagesArray: packagesArray)
+let nonInsertedItems = removeItemsFrom(itemsArray: itemsArray, packagesArray: packagesArray)
+packagesArray = getOrderedPackagesWithOutWeightLimit(itemsArray: nonInsertedItems, packagesArray: packagesArray)
+let nonAccomodateableItems = removeItemsFrom(itemsArray: nonInsertedItems, packagesArray: packagesArray)
+for item in nonAccomodateableItems {
+    packagesArray.append([item])
+}
+
+for i in 0..<packagesArray.count {
+    print("Package Count \(i): ", packagesArray[i].count)
+    print("Package Price \(i): ", (getPrice(packArray: packagesArray[i])))
+    print("Package Weight \(i): ", (getWeight(packArray: packagesArray[i])))
+    print("Package \(i): ", packagesArray[i])
+}
+
+
