@@ -1,0 +1,7 @@
+{
+    "host": "localhost",
+    "port": 8081,
+    "user": "root",
+    "password": "",
+    "database": "emoschema"
+}

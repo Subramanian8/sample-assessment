@@ -1,0 +1,37 @@
+Hi,
+I have complete the assessment and attached the code here, please check it and the thing is I used reactjs as front-end and nodejs as a backend.
+Am not familier with php so that i used node js as backend. For database i used MYSQL DB and passed datas to front-end in JSON Format. 
+
+
+Nodejs:
+Two methods used to get product values :
+1. Get all the values from database using MYSQL QUERY.
+2. Read the Xls file to get all the values using node js.
+
+So, I attached the sql file and the xls file. but at the time we have to run any one server file to get datas.I configure all the thing no need to confuse.
+
+-> sqlserver.js - Here, i just import 'mysql' to access the database. The host, port, username, password and database name are maintained in separate config file. to use sql have to import the "itemlist.sql" in local database and run the project.(NOTE: Find the steps below to run node project)
+
+-> xlsserver.js - I used 'xlsx' npm package to read the xls/xlsx file. to run this server file we don't need anything to do specially. Just run the project using run cmd [Example: node filename.js]
+
+
+
+Please follow the steps to run the node js project:
+
+1. Unzip the Node.zip file.
+2. Install the npm using following command,
+	-> npm install
+
+To use sql db follow the 3rd & 4th steps:	
+3. To run this with sql db, have to import "itemlist.sql" in local database. If required change the host, port, username, password in config file.
+4. Start the project using following cmd,
+	-> node sqlserver.js
+	-> It run on http://localhost:8080
+	
+To use xls/xlsx files follow the 5th & 6th steps:
+5. Just start the project using following cmd,
+	-> node xlsserver.js
+	-> It run on http://localhost:8080
+	
+	
+6. open the "index.html" in react project folder(react_project-fronend) to view the page.
